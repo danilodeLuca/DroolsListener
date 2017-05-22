@@ -133,4 +133,9 @@ public class Flight implements Serializable {
 		this.convertionRate = convertionRate;
 		this.ruleConvertionRate = ruleConvertionRate;
 	}
+
+	@Override
+	public String toString() {
+		return "Flight [airline=" + airline + ", convertionRate=" + convertionRate + ", ruleConvertionRate=" + ruleConvertionRate + "]";
+	}
 }

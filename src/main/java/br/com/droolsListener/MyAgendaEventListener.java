@@ -20,31 +20,28 @@ public class MyAgendaEventListener implements AgendaEventListener {
 	
 	@Override
 	public void afterMatchFired(AfterMatchFiredEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		List<Object> matchedObjects = arg0.getMatch().getObjects();
+		for (Object nextMatchedObject : matchedObjects) {
+			if (nextMatchedObject instanceof Flight) {
+				System.out.println("afterMatchFired:" + ((Flight) nextMatchedObject).toString());
+			}
+		}
 	}
 
 	@Override
 	public void afterRuleFlowGroupActivated(RuleFlowGroupActivatedEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void afterRuleFlowGroupDeactivated(RuleFlowGroupDeactivatedEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void agendaGroupPopped(AgendaGroupPoppedEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void agendaGroupPushed(AgendaGroupPushedEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -55,11 +52,11 @@ public class MyAgendaEventListener implements AgendaEventListener {
 		List<Object> matchedObjects = beforeMatchFiredEvent.getMatch().getObjects();
 		for (Object nextMatchedObject: matchedObjects) {
 			if (nextMatchedObject instanceof Flight) {
-				logLineBuilder.append(" SimpleEvent: ").append(((Flight) nextMatchedObject).toString()).append(".");
+				logLineBuilder.append(" Flight: ").append(((Flight) nextMatchedObject).toString()).append(".");
+				System.out.println("beforeMatchFired:" + ((Flight) nextMatchedObject).toString());
 			}
 		}
 		LOGGER.info(logLineBuilder.toString());
-		
 	}
 
 	@Override
@@ -87,7 +84,8 @@ public class MyAgendaEventListener implements AgendaEventListener {
 		List<Object> matchedObjects = matchCreatedEvent.getMatch().getObjects();
 		for (Object nextMatchedObject: matchedObjects) {
 			if (nextMatchedObject instanceof Flight) {
-				logLineBuilder.append(" SimpleEvent: ").append(((Flight) nextMatchedObject).toString());
+				logLineBuilder.append(" Flight: ").append(((Flight) nextMatchedObject).toString());
+				System.out.println("matchCreated:" + ((Flight) nextMatchedObject).toString());
 			}
 		}
 		LOGGER.info(logLineBuilder.toString());
