@@ -19,7 +19,10 @@ public class Flight implements Serializable {
 
 	private Double ruleConvertionRate;
 
+	private boolean alreadyRun = false;
+
 	public Flight() {
+		this.alreadyRun = false;
 	}
 
 	public String getAirline() {
@@ -91,6 +94,9 @@ public class Flight implements Serializable {
 	}
 
 	public void addConvertionRate(Double value) {
+		if (alreadyRun)
+			return;
+
 		if (this.convertionRate == null)
 			this.convertionRate = 0D;
 		this.convertionRate += value;
@@ -136,6 +142,14 @@ public class Flight implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Flight [airline=" + airline + ", convertionRate=" + convertionRate + ", ruleConvertionRate=" + ruleConvertionRate + "]";
+		return "Flight [airline=" + airline + ", convertionRate=" + convertionRate + ", origin=" + origin + ", id=" + ruleConvertionRate + "]";
+	}
+
+	public void setAlreadyRun(boolean b) {
+		this.alreadyRun = b;
+	}
+
+	public boolean hasConvertionRate() {
+		return this.convertionRate != null && this.convertionRate > 0;
 	}
 }
